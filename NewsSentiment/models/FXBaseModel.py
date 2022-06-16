@@ -33,11 +33,11 @@ class FXBaseModel(PreTrainedModel):
 
     def invoke_language_model(self, lm, input_ids, token_type_ids=None):
         type_lm = type(lm)
-        if type_lm == XLNetModel:
+        if type_lm == RobertaModel:
             last_hidden_state, mems, all_hidden_states = lm(
                 input_ids=input_ids, token_type_ids=token_type_ids,
             )
-        elif type_lm in [AlbertModel, BertModel, RobertaModel]:
+        elif type_lm in [AlbertModel, BertModel, XLNetModel]:
             if token_type_ids is None:
                 last_hidden_state, pooler_output, hidden_states = lm(
                     input_ids=input_ids,
