@@ -42,11 +42,14 @@ from NewsSentiment.knowledge.zeros.zerosknowledge import (
 from NewsSentiment.models.FXBaseModel import FXBaseModel
 
 logger = get_logger()
+
+x = str(input("Enter model name:"))
+
 try:
-    nlp = spacy.load("en_core_web_sm")
+    nlp = spacy.load(x)
 except OSError:
-    spacy.cli.download("en_core_web_sm")
-    nlp = spacy.load("en_core_web_sm")
+    spacy.cli.download("es_core_web_sm")
+    nlp = spacy.load("es_core_web_sm")
 
 # get list of parser's labels
 parser_index = nlp.pipe_names.index("parser")
